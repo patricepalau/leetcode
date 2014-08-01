@@ -9,7 +9,7 @@ import java.util.Set;
  * Find that element.
  * 
  * This solution is the alternative to using the xor operator
- * over all elements in the array.
+ * over all elements in the array, probably the best approach - which I totally missed.
  * 
  * The key here is to use the proper data structure to add/remove elements:
  * using a HashSet -which provides O(1) for add/remove/contains- allows a linear
