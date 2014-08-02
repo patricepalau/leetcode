@@ -1,4 +1,5 @@
 leetcode
 ========
 
-a bit of fun with leetcode problems
+My solutions for leetcode problems
+
