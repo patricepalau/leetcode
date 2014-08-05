@@ -8,10 +8,11 @@ import java.util.List;
  * https://oj.leetcode.com/problems/pascals-triangle/
  * Given numRows, generate the first numRows of Pascal's triangle.
  * 
+ * This solution got accepted, and uses recursion to generate the next row
+ * out of the previous one.
+ * 
  */
 public class Solution {
-	
-	
 	// 1 0 0 0
 	// 1 1 0 0
 	// 1 2 1 0
