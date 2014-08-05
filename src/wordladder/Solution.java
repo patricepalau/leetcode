@@ -75,16 +75,13 @@ long beg = System.currentTimeMillis();
 		String currentWord = nbMoves == 0 ? start : moves.get(moves.size() - 1);
 		
 		int currentDist = distToEnd.get(currentWord);
-		
-//		List<String> potentialCandidates =  new ArrayList<String>();
-//
-//		potentialCandidates.addAll(dist.get(currentDist - 1));
-//		potentialCandidates.addAll(dist.get(currentDist));
+
 		List<String> potentialCandidates = allPotentialCandidates.get(currentDist);
 //System.out.println("# of potentials:" + potentialCandidates.size());
 		timeSort += (System.currentTimeMillis() - beg);
 		
 		List<String> candidates = new ArrayList<String>();
+		List<String> priority = new ArrayList<String>();
 		for (String word: potentialCandidates) {
 			if (isOneCharAway(currentWord, word)) {
 				candidates.add(word);
