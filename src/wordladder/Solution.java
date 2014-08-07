@@ -73,7 +73,7 @@ public class Solution {
 		return d;
 	}
 	
-	private List<String> findWords(String word, int d, List<String> ignore) {
+	private List<String> findWords(String word) {
 		List<String> result = new ArrayList<String>();; 
 		
 		// for each word, 
@@ -130,7 +130,7 @@ public class Solution {
 		String word = move.word;
 		
 		// find words in dict at 1 letter distance from current or less
-		List<String> neighbors = findWords(word, 1, path);
+		List<String> neighbors = findWords(word);
 		// for each word
 		for (String neighbor: neighbors) {
 			if (isSolution(neighbor, path)) {
@@ -150,10 +150,7 @@ public class Solution {
 				}				
 			}
 		}
-		
 	}
-	
-	
 		
 	public int ladderLength(String start, String end, Set<String> dict) { 
 		// in case we get dummy inputs
