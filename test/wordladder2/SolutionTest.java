@@ -15,6 +15,9 @@ public class SolutionTest {
 		
 		long start = System.currentTimeMillis();
 
+		// "hit","hot","dot","dog","cog"
+	    // "hit","hot","lot","log","cog"
+	  
 		List<List<String>> result = solution.findLadders("hit", "cog", dict);
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
@@ -61,8 +64,8 @@ public class SolutionTest {
 		List<List<String>>  result = solution.findLadders("qa", "sq", dict);
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
-		// qa ca cr sr sq
-		Assert.assertEquals(5, result.size());
+		
+		Assert.assertEquals(51, result.size());
 	}
 	
 	@Test
@@ -81,7 +84,7 @@ public class SolutionTest {
 		List<List<String>>  result = solution.findLadders("cet", "ism", dict);
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
-		// cet -> set -> mes -> ism
+		
 		Assert.assertEquals(3, result.size());
 	}
 	
@@ -151,7 +154,7 @@ public class SolutionTest {
 		List<List<String>>  result = solution.findLadders("nanny", "aloud", dict);
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
-		Assert.assertEquals(20, result.size());
+		Assert.assertEquals(2, result.size());
 	}
 	
 	@Test
@@ -164,7 +167,7 @@ public class SolutionTest {
 		List<List<String>>  result = solution.findLadders("charge", "comedo", dict);
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
-		Assert.assertEquals(42, result.size());
+		Assert.assertEquals(1, result.size());
 	}
 	
 	@Test
@@ -178,7 +181,7 @@ public class SolutionTest {
 		List<List<String>>  result = solution.findLadders("nape", "mild", dict);
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
-		Assert.assertEquals(6, result.size());
+		Assert.assertEquals(9, result.size());
 	}
 	
 	@Test
@@ -192,7 +195,7 @@ public class SolutionTest {
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
 		
-		Assert.assertEquals(2, result.size());
+		Assert.assertEquals(1, result.size());
 	}
 	
 	@Test
@@ -220,7 +223,7 @@ public class SolutionTest {
 		System.out.println("total: " + (System.currentTimeMillis() - start) + "ms");
 		System.out.println(result);
 
-		Assert.assertEquals(6, result.size());
+		Assert.assertEquals(1, result.size());
 	}
 	
 	
