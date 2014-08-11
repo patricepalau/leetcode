@@ -41,24 +41,93 @@ public class Solution {
 		}
 	}
 	
+	// O(1) space solution
+	// see threaded binary trees
+	// 
+	// given any node N:
+	// - if the left subtree, the largest node is the rightmost node
+	// - this rightmost node should point back at N
+	// 
+	//
+	public void recoverTree(TreeNode root) {
+		// traversal in O(1) space
+		
+		TreeNode current   = root;
+		
+		while (current != null) {
+			//System.out.println(current);
+			
+			if (current.left == null) {
+				// we found a leftmost node - process it
+				System.out.println("leftmost: " + current);
+				process(current);
+				// and continue to its right
+				// at this point, we might be following a thread back
+				current = current.right;				
+			}
+			else {
+				TreeNode left      = current.left;
+				TreeNode rightmost = left;
+				// determine the rightmost node in the left subtree
+				// (the rightmost node contains the largest value in the left subtree)
+				// however we need to make sure we don't get in an infinite loop:
+				// we know that if rightmost gets back to current
+				// so instead of rightmost.right != null
+				// we use the following condition
+				while (rightmost.right != null && rightmost.right != current) {
+					rightmost = rightmost.right;
+				}
+				
+				// so we found the rightmost node which is not current
+				// now 2 possibilities:
+				// - either rightmost has no right child
+				if (rightmost.right == null) {
+					// and we need to assign current
+					// the rightmost node points back at current i.e. its in-order successor
+					rightmost.right = current;
+					// continue left
+					current = current.left;
+				}
+				// - or it has a right child (current)
+				else {
+					// we followed a thread back to this node:
+					// print it
+					System.out.println("right: " + current);
+					process(current);
+					
+					// clean up behind us
+					rightmost.right = null;
+					
+					// and move to the right
+					// since left has already been visited
+					current = current.right;
+				}
+			}
+		}
+		
+		swap(max, min);
+	}
+	
+	// O(n) space solution
+	// -------------------
 	// will contain the largest misplaced node
 	private TreeNode max = null;
 	// will contain the smallest misplaced node
 	private TreeNode min = null;
-	
-	public void recoverTree(TreeNode root) {
+
+	public void recoverTreeRec(TreeNode root) {
 		// traverse the tree to spot the 2 misplaced nodes
-    	traverse(root);
+    	traverseRec(root);
     	// swap them
     	swap(max, min);
     }
 	
-	// in-order traversal
-	private void traverse(TreeNode node) {
+	// in-order recursive traversal
+	private void traverseRec(TreeNode node) {
 		if (node == null) return;
-		traverse(node.left);
+		traverseRec(node.left);
 		process(node);
-		traverse(node.right);
+		traverseRec(node.right);
 	}
 	
 	// each node must be larger than its predecessor in-order
