@@ -1,8 +1,5 @@
 package validbst;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * https://oj.leetcode.com/problems/validate-binary-search-tree/
@@ -13,6 +10,11 @@ import java.util.ListIterator;
  * - The right subtree of a node contains only nodes with keys greater than the node's key.
  * - Both the left and right subtrees must also be binary search trees
  * 
+ * My first solution involved keeping track of the complete path from the root
+ * which is unnecessary since all is needed is the min and max allowable values
+ * for a given node, defined by its ancestry as follows:
+ * - for the left child: the max is the immediate parent's value, the min is the same than the parent
+ *  -for the right child: the max is the same than the parent's max, the min is the immediate parent's value
  */
 public class Solution {
 	
@@ -21,55 +23,24 @@ public class Solution {
 		TreeNode left;
 		TreeNode right;
 		TreeNode(int x) { val = x; }
-		public String toString() {
-			
-			return "node: " + val + " (l:"
-					+ (left != null ? left.val : "null")
-					+ ", r:"
-					+ (right != null ? right.val : "null")
-					+ ")";
-		
-		}
 	}
 	
 	public boolean isValidBST(TreeNode root) {
-		List<TreeNode> path = new ArrayList<TreeNode>();
-		return isValidBST(root, path);
+		// initialize recursion
+		return isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 	
-	private boolean isValidBST(TreeNode node, List<TreeNode> path) {
-		if (node == null) return true;
-		
-		boolean isValid = true;
-		
-		int val = node.val;
-		
-		ListIterator<TreeNode> lit = path.listIterator(path.size());
-		TreeNode current = node;
-		while (lit.hasPrevious()) {
-			TreeNode parent = lit.previous();
-			if (current == parent.right) {
-				if (val <= parent.val) {
-					isValid = false;
-				}
-			}
-			else {
-				if (val >= parent.val) {
-					System.out.println("invalid: " + node);
-					isValid = false;
-				}
-			}
-			current = parent;
-			if (!isValid) break;
+	// each node in a BST has a min and max which depend on the node's ancestry
+	private boolean isValidBST(TreeNode node, int min, int max) {
+		if (node == null) {
+			return true;
 		}
 		
-		if (isValid) {
-			path.add(node);
-			isValid  = isValidBST(node.left, path);
-			isValid = isValid && isValidBST(node.right, path);
-			path.remove(node);
+		if (node.val <= min || node.val >= max) {
+			return false;
 		}
 		
-		return isValid;
+		return isValidBST(node.left,  min ,node.val)
+			&& isValidBST(node.right, node.val, max);
 	}
 }
