@@ -143,7 +143,6 @@ public class SolutionTest {
 		Assert.assertEquals(11, result.size());
 	}
 	
-	
 	@Test
 	public void test5() {
 		Solution solution = new Solution();
