@@ -1,6 +1,7 @@
 package foursum;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,6 +40,60 @@ import java.util.Set;
 //     - add aj to each list
 //   - add ai to each list
 public class Solution {
+	
+	
+	public List<List<Integer>> fourSum(int[] num, int target) {
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+				
+		int n = num.length;
+		if (n < 4) return result;
+		
+		Arrays.sort(num);
+		
+		for (int i = 0; i < n - 3; i++) {
+			for (int j = i + 1; j < n - 2; j++) {
+				for (int k = j + 1; k < n - 1; k++) {
+					// is there a p in i+2...n such that a[p] = target - (a[i] + a[j] + a[k])
+					int value = target - (num[i] + num[j] + num[k]);
+					if (num[k + 1] > value || num[n - 1] < value) {
+						continue;
+					}
+					int index = binarySearch(value, num, k + 1, n - 1);
+					if (index >= 0) {
+						// add it to results
+						List<Integer> list = new ArrayList<Integer>();
+						list.add(num[i]);
+						list.add(num[j]);
+						list.add(num[k]);
+						list.add(num[index]);
+						if (!result.contains(list)) result.add(list);
+					}
+				}
+				
+			}
+		}
+		
+		return result;
+	}
+	
+	
+	private int binarySearch(int value, int[] a, int start, int end) {
+		if (start > end) {
+			return -1;
+		}
+		
+		int mid = (start + end) / 2;
+		if (a[mid] == value) {
+			return mid;
+		}
+		if (a[mid] < value) {
+			return binarySearch(value, a, mid + 1, end);
+		}
+		else {
+			return binarySearch(value, a, start, mid - 1);
+		}
+	}
+	
 	int cnt2 = 0;
 	long total2 = 0;
 	int cnt1 = 0;
@@ -253,7 +308,7 @@ public class Solution {
 		return all;
 	}
 	
-    public List<List<Integer>> fourSum(int[] num, int target) {
+    public List<List<Integer>> fourSum2(int[] num, int target) {
     	long tstart = System.currentTimeMillis();
     	System.out.println();
     	System.out.println("Running for: " + num.length);

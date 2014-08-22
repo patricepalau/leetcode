@@ -8,41 +8,22 @@ import org.junit.Test;
 public class SolutionTest {
 	@Test
 	public void test1() {
-		long start = System.currentTimeMillis();
-
 		int[] num = {1, 0, -1, 0, -2, 2};
 		int target = 0;
 		Solution solution = new Solution();
 		List<List<Integer>> q = solution.fourSum(num, target);
 		System.out.println(q);
-		// 
-		// find 4 with target = 0 in A={-2, -1, 0, 0, 1, 2}
-		//  for each element in A
-		//    current = -2
-		//    find 3 with target = -2 in A={-1,0,0,1,2}
-		//      current = -1
-		// 		find 2 with target = -3 in A={0,0,1,2}
-		// 			current = 0
-		//          find 1 with target = -3 in A={0,1,2}
-		//          returns nothing
-		//      returns nothing
-		//    returns nothing
-		//
-		//    current = -1
-		//    find 3 with target -1 in A={-2,0,0,1,2}
-		//      current = -2
-		//      find 2 with target -3 in A={0,0,1,2}
-		//
+		Assert.assertEquals(3, q.size());
 	}
 	
 	@Test
 	public void test2() {
-		long start = System.currentTimeMillis();
 		int[] num = {-493,-482,-482,-456,-427,-405,-392,-385,-351,-269,-259,-251,-235,-235,-202,-201,-194,-189,-187,-186,-180,-177,-175,-156,-150,-147,-140,-122,-112,-112,-105,-98,-49,-38,-35,-34,-18,20,52,53,57,76,124,126,128,132,142,147,157,180,207,227,274,296,311,334,336,337,339,349,354,363,372,378,383,413,431,471,474,481,492};
 		int target = 6189;
 		Solution solution = new Solution();
 		List<List<Integer>> q = solution.fourSum(num, target);
 		System.out.println(q);
+		Assert.assertEquals(0, q.size());
 	}
 	
 	
@@ -54,6 +35,7 @@ public class SolutionTest {
 		Solution solution = new Solution();
 		List<List<Integer>> q = solution.fourSum(num, target);
 		System.out.println(q);
+		Assert.assertEquals(0, q.size());
 	}
 	
 	@Test
@@ -63,6 +45,7 @@ public class SolutionTest {
 		Solution solution = new Solution();
 		List<List<Integer>> q = solution.fourSum(num, target);
 		System.out.println(q);
+		Assert.assertEquals(0, q.size());
 	}
 	
 	@Test
@@ -79,5 +62,17 @@ public class SolutionTest {
 			Assert.assertEquals(target, sum);
 		}
 		System.out.println(q);
+	}
+	
+	@Test
+	public void test6() {
+		int[] num = {0, 0, 0, 0};
+		int target = 1;
+		Solution solution = new Solution();
+		List<List<Integer>> q = solution.fourSum(num, target);
+		System.out.println(q);
+
+		Assert.assertNotNull(q);
+		Assert.assertEquals(q.size(), 0);
 	}
 }
