@@ -15,18 +15,23 @@ package twosum;
  * 
  */
 public class Solution {
+	
 	public int[] twoSum(int[] numbers, int target) {
 		int[] indexes = new int[2];
+		
+		// go through each item in the array
         for (int i = 0; i < numbers.length; i++) {
-        	// is target-current in the array?
+        	// is (target - current) in the array?
         	int current = numbers[i];
+        	// it's not until proven otherwise
         	boolean found = false;
+        	// check all numbers after the current one
         	int j;
         	for (j = i + 1; j < numbers.length; j++) {
-        		//if (j == i) continue;
         		found = (numbers[j] == target - current);
         		if (found) break;
         	}
+        	// if we found a hit - break out of this loop
         	if (found) {
         		indexes[0] = i + 1;
         		indexes[1] = j + 1;
