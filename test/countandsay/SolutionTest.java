@@ -21,4 +21,5 @@ public class SolutionTest {
 		Solution solution = new Solution();
 		Assert.assertEquals("1211", solution.countAndSay(4));
 	}
+	
 }
