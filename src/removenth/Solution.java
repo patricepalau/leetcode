@@ -12,14 +12,6 @@ import java.util.Stack;
  * Given n will always be valid.
  * Try to do this in one pass.
  */
-
-/**
- * 
- * x -> y-> z-> a
- * 
- * 
- * 
- */
 public class Solution {
 	
 	public static class ListNode {
